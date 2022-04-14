@@ -25,7 +25,7 @@ namespace UploadDocumentsToMfile.Models
                 var auth = new
                 {
                     Username = "Admin",
-                    Password = "abc123",
+                    Password = "123",
                     VaultGuid = "{E30EEB1E-891D-4BC8-B171-218DCCBE9035}" // Use GUID format with {braces}.
                 };
                 string url = "http://127.0.0.1/REST/server/authenticationtokens.aspx";
