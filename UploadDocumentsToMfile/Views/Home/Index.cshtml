@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<style>
+    .card-0 {
+        min-height: 110vh;
+        background: linear-gradient(-20deg, rgb(255, 255, 255) 50%, #0275d8 50%);
+        color: white;
+        border: 0px
+    }
+
+    p {
+        font-size: 15px;
+        line-height: 25px !important;
+        font-weight: 500
+    }
+
+    .container {
+       
+        border-radius: 20px
+    }
+
+    .btn {
+        letter-spacing: 1px
+    }
+
+    select:active {
+        box-shadow: none !important;
+        outline-width: 0 !important
+    }
+
+    select:after {
+        box-shadow: none !important;
+        outline-width: 0 !important
+    }
+
+    input,
+    textarea {
+        padding: 10px 12px 10px 12px;
+        border: 1px solid lightgrey;
+        border-radius: 0px !important;
+        margin-bottom: 5px;
+        margin-top: 2px;
+        width: 100%;
+        box-sizing: border-box;
+        color: #2C3E50;
+        font-size: 14px;
+        letter-spacing: 1px;
+        resize: none
+    }
+
+        select:focus,
+        input:focus {
+            box-shadow: none !important;
+            border: 1px solid #2196F3 !important;
+            outline-width: 0 !important;
+            font-weight: 400
+        }
+
+    label {
+        margin-bottom: 2px;
+        font-weight: bolder;
+        font-size: 14px
+    }
+
+    input:focus,
+    textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #304FFE;
+        outline-width: 0
+    }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+
+    .form-control {
+        height: calc(2em + .75rem + 3px)
+    }
+
+    .inner-card {
+        margin: 79px 0px 70px 0px
+    }
+
+    .card-0 {
+        margin-top: 100px;
+        margin-bottom: 100px
+    }
+
+    .card-1 {
+        border-radius: 17px;
+        color: black;
+        box-shadow: 2px 4px 15px 0px rgb(0, 0, 0, 0.5) !important
+    }
+
+    #file {
+        border: 2px dashed #92b0b3 !important
+    }
+
+    .color input {
+        background-color: #f1f1f1
+    }
+
+    .files:before {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        width: 100%;
+        content: attr(data-before);
+        color: #000;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center
+    }
+
+    #file {
+        display: inline-block;
+        width: 100%;
+        padding: 95px 0 0 100%;
+        background: url('https://i.imgur.com/VXWKoBD.png') top center no-repeat #fff;
+        background-size: 55px 55px
+    }
+</style>
+
+
+<body>
+    <div class="container card-0 justify-content-center ">
+        <div class="card-body px-sm-4 px-0">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10 col">
+                    <h3 class="font-weight-bold ml-md-0 mx-auto text-center text-sm-left">Uploading Documnents To Mfile</h3>
+                    <p class="mt-md-4 ml-md-0 ml-2 text-center text-sm-left"> Enter The Basic MetaData Details And attached the File.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center round">
+                <div class="col-lg-10 col-md-12 ">
+                    <div class="card shadow-lg card-1">
+                        <div class="card-body inner-card">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 col-md-6 col-sm-12">
+                                    <div class="form-group"><label for="first-name">File Title</label><input type="text" class="form-control" id="txtTitle" placeholder="Type your Title"> </div>
+                                </div>
+                                <div class="col-lg-5 col-md-6 col-sm-12">
+                                    <div class="form-group"> <label for="last-name">Keyword</label> <input type="text" class="form-control" id="txtKeyword" placeholder=""> </div>
+
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-12 col-lg-10 col-12">
+                                    <div class="form-group files"><label class="my-auto">Upload Your File </label> <input id="file" type="file" class="form-control" /></div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-md-12 col-lg-10 col-12">
+                                    <div class="form-group files">
+                                        <input type="button" id="btnUpload" value="Upload Files" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+<script>
+    $(document).ready(function () {
+        $(".files").attr('data-before', "Drag file here or click the above button");
+        $('input[type="file"]').change(function (e) {
+            var fileName = e.target.files[0].name;
+            $(".files").attr('data-before', fileName);
+
+        });
+    });
+
+
+
+
+
+    $(document).ready(function () {
+        $('#btnUpload').click(function () {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var title = document.getElementById("txtTitle").value;
+                var keyword = document.getElementById("txtKeyword").value;
+
+                var fileUpload = $("#file").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object
+                fileData.append('FileTitle', title);
+                fileData.append('Keyword', keyword);
+
+                $.ajax({
+                    url: '/Home/Index',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        alert(result);
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+    });
+</script>
+
+</script>
